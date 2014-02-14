@@ -9,6 +9,7 @@
     "angular-resource": "~1.2.12",
     "angular-cookies": "~1.2.12",
     "angular-sanitize": "~1.2.12",
+    "angular-route": "~1.2.12",
     "sass-bootstrap": "~3.0.2",
     "d3-cloud": "~1.0.4",
     "momentjs": "~2.5.1"
