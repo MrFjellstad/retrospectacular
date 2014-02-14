@@ -1,15 +1,15 @@
 'use strict';
 
-angular.module('retrospectApp')
-    .controller('RetroCtrl', [
-        '$scope',
-        '$location',
-        'retrospectives',
-        'LocaleDateTime',
+angular.module('retrospectApp').controller('RetroCtrl', [
+    '$scope',
+    '$location',
+    'retrospectives',
 
-    function ($scope, $location, retrospectives, LocaleDateTime) {
+    function ($scope, $location, retrospectives) {
         $scope.retrospectives = [];
         $scope.newRetrospective = {};
+        $scope.limit = 10000;
+        $scope.page = 1;
 
         $scope.deleteRetrospective = function(retrospective) {
             var index = $scope.retrospectives.indexOf(retrospective);
@@ -41,8 +41,8 @@ angular.module('retrospectApp')
         };
 
         // this throws an error with cross domain
-        retrospectives.get(function (response) {
-            $scope.retrospectives = LocaleDateTime.localizeResults(response.results);
+        retrospectives.get({'limit': $scope.limit, 'page': $scope.page},function (response) {
+            $scope.retrospectives = response.results;
         });
     }
 ]);

@@ -2,6 +2,9 @@
 
 A retrospective tool
 
+##Build
+[![Build Status](https://travis-ci.org/FronterAS/retrospectacular.png?branch=master)](https://travis-ci.org/FronterAS/retrospectacular)
+
 ##Database
 ###Setup
 http://www.elasticsearch.org/download/

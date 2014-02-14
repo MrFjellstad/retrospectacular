@@ -14,11 +14,20 @@ module.exports = function(config) {
       'app/bower_components/angular/angular.js',
       'app/bower_components/angular-mocks/angular-mocks.js',
       'app/bower_components/angular-resource/angular-resource.js',
+      'app/bower_components/momentjs/moment.js',
       'app/scripts/*.js',
       'app/scripts/**/*.js',
-      'test/mock/**/*.js',
+      'app/views/*.html',
+      'app/views/directives/*.html',
+      //'test/mock/**/*.js',
       'test/spec/**/*.js'
     ],
+
+    preprocessors: {
+      'app/views/*.html': 'html2js',
+      'app/views/**/*.html': 'html2js',
+      'app/scripts/**/*.js': 'coverage'
+    },
 
     // list of files / patterns to exclude
     exclude: [],
@@ -43,11 +52,18 @@ module.exports = function(config) {
     // - Safari (only Mac)
     // - PhantomJS
     // - IE (only Windows)
-    browsers: ['Firefox'],
+    browsers: ['Firefox', 'PhantomJS'],
 
 
     // Continuous Integration mode
     // if true, it capture browsers, run tests and exit
-    singleRun: false
+    singleRun: false,
+
+    reporters: ['progress','coverage'],
+
+    //coverage reporter type
+    coverageReporter: {
+        type : 'html'
+    }
   });
 };

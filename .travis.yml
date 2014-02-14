@@ -20,5 +20,5 @@ before_script:
     - cd ../../
 
 script:
-    - cd ../static
     - npm test
+    - grunt jshint
