@@ -5,7 +5,8 @@ var development = {
     },
     'app': {
         'host':'localhost',
-        'port': 3000
+        'port': 3000,
+        'secret' : 'THIS IS A SECRET'
     },
     'log': {
         'transport': 'Console'
@@ -19,7 +20,8 @@ production = {
     },
     'app': {
         'host':'localhost',
-        'port': 3000
+        'port': 3000,
+        'secret' : 'THIS IS A SECRET'
     },
     'log': {
         'transport': 'DailyRotateFile',

@@ -10,7 +10,7 @@ var retrospectives = require('./models/retrospectives'),
         next();
     };
 
-exports.setup = function (api) {
+exports.setup = function (api, auth) {
     api.use(allowCrossDomain);
 
     api.get('/retrospectives', retrospectives.getRetrospectives);
@@ -25,5 +25,15 @@ exports.setup = function (api) {
     api.post('/retrospectives/:retroId/tickets', tickets.postTicketToRetrospective);
     api.delete('/retrospectives/:retroId/tickets/:ticketId', tickets.deleteTicket);
 
-    api.get('/wordcloud', tickets.getTicketWords);
+    api.get('/wordcloud', auth.isAuth, tickets.getTicketWords);
+
+    api.get('/auth/google', auth.authenticate('google'));
+    api.get('/auth/google/return', auth.authenticate('google', {successRedirect: '/', failureRedirect: '/login'}));
+    api.get('/auth/logout', function (req, res) {
+        req.logOut();
+        res.send(200);
+    });
+    api.get('/auth/loggedin', function (req, res) {
+        res.send(req.isAuthenticated() ? req.user : '0');
+    });
 };
