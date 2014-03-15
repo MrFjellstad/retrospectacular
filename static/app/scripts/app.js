@@ -23,6 +23,10 @@ angular.module('retrospectApp', ['ngSanitize', 'ngRoute', 'ngResource', 'retrosp
                 templateUrl: 'views/tickets.html',
                 controller: 'TicketCtrl'
             })
+            .when('/unauthorized', {
+              templateUrl: 'views/unauthorized.html',
+              controller: 'UnauthorizedCtrl'
+            })
             .otherwise({
                 redirectTo: '/'
             });
