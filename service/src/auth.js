@@ -1,5 +1,6 @@
+'use strict';
+
 var passport = require('passport'),
-    flash = require('connect-flash'),
     googleStrategy = require('passport-google').Strategy,
     config = require('../config').Config;
 
@@ -24,7 +25,7 @@ exports.setup = function (api, express) {
             config.app.port + '/auth/google/return',
         realm: 'http://' + config.app.host + ':' +
             config.app.port + '/'
-        }, function(identifier, profile, done) {
+    }, function(identifier, profile, done) {
         // asynchronous verification, for effect...
             process.nextTick(function () {
 
@@ -36,32 +37,20 @@ exports.setup = function (api, express) {
     // the user by ID when deserializing. However, since this example does not
     // have a database of user records, the complete Google profile is serialized
     // and deserialized.
-            profile.identifier = identifier;
-            return done(null, profile);
-        });
-    }));
+                profile.identifier = identifier;
+                return done(null, profile);
+            });
+        }));
+};
 
-}
-/*
-exports.initialize = function () {
-    return passport.initialize();
-}
-
-exports.session = function () {
-    return passport.session();
-}
-
-exports.flash = function () {
-    return flash();
-}
-*/
 exports.authenticate = function ( strategy, options, callback ) {
     return passport.authenticate( strategy, options, callback );
-}
+};
 
 exports.isAuth = function(req, res, next) {
-    if (!req.isAuthenticated())
+    if (!req.isAuthenticated()) {
         res.send(401);
-    else
+    } else {
         next();
-}
+    }
+};

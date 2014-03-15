@@ -18,6 +18,6 @@ routes.setup(api, auth);
 
 logs.setupErrorLogger(api);
 
-api.use(express.static("../../static/app"));
+api.use(express.static('../../static/app'));
 
 api.listen(config.app.port, config.app.host);

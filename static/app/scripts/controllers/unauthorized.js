@@ -1,5 +1,5 @@
 'use strict';
 
 angular.module('retrospectApp')
-    .controller('UnauthorizedCtrl', function ($scope) {
+    .controller('UnauthorizedCtrl', function () {
 });
