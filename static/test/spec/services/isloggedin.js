@@ -1,18 +1,18 @@
 'use strict';
 
-describe('Service: isLoggedin', function () {
+describe('Service: isLoggedIn', function () {
 
   // load the service's module
   beforeEach(module('retrospectApp'));
 
   // instantiate service
-  var isLoggedin;
-  beforeEach(inject(function (_isLoggedin_) {
-    isLoggedin = _isLoggedin_;
+  var isLoggedIn;
+  beforeEach(inject(function (_isLoggedIn_) {
+    isLoggedIn = _isLoggedIn_;
   }));
 
   it('should do something', function () {
-    expect(!!isLoggedin).toBe(true);
+    expect(!!isLoggedIn).toBe(true);
   });
 
 });
