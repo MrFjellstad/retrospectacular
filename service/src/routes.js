@@ -28,7 +28,10 @@ exports.setup = function (api, auth) {
     api.get('/wordcloud', auth.isAuth, tickets.getTicketWords);
 
     api.get('/auth/google', auth.authenticate('google'));
-    api.get('/auth/google/return', auth.authenticate('google', {successRedirect: '/', failureRedirect: '/login'}));
+    api.get('/auth/google/return', auth.authenticate('google', {
+        successRedirect: '/',
+        failureRedirect: '/login'
+    }));
     api.get('/auth/logout', function (req, res) {
         req.logOut();
         res.send(200);

@@ -11,14 +11,13 @@ api.use(express.methodOverride());
 api.use(express.json());
 
 auth.setup(api, express);
-//api.use(auth.session()); // persistent login sessions
-//api.use(auth.flash());   // use connect-flash for flash messages stored
-                    //in session. Sounded like a good idea
 
 logs.setupLogger(api);
 
 routes.setup(api, auth);
 
 logs.setupErrorLogger(api);
+
+api.use(express.static("../../static/app"));
 
 api.listen(config.app.port, config.app.host);
