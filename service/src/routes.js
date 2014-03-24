@@ -2,6 +2,8 @@
 
 var retrospectives = require('./models/retrospectives'),
     tickets = require('./models/tickets'),
+    config = require('../config').Config,
+    jwt = require('jwt-simple'),
 
     allowCrossDomain = function(req, res, next) {
         res.header('Access-Control-Allow-Origin', '*');
@@ -29,9 +31,24 @@ exports.setup = function (api, auth) {
 
     api.get('/auth/google', auth.authenticate('google'));
     api.get('/auth/google/return', auth.authenticate('google', {
-        successRedirect: '/',
-        failureRedirect: '/login'
-    }));
+
+        failureRedirect: '/login' }),
+        function (req, res) {
+            var user = req.user,
+                account = req.account,
+                jwtToken;
+
+//            account.userId = user.id;
+
+            jwtToken = jwt.encode({username: req.user}, config.app.secret);
+            res.json({token: jwtToken});
+
+
+
+        }
+
+        //successRedirect: '/',
+    );
     api.get('/auth/logout', function (req, res) {
         req.logOut();
         res.send(200);
