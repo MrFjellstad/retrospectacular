@@ -9,6 +9,10 @@ angular.module('retrospectApp')
                 $location.path('/unauthorized');
             }
             return $q.reject(rejection);
+        },
+        'response' : function (response) {
+          console.log(response);
+          return response;
         }
     };
 });

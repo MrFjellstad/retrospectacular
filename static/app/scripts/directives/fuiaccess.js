@@ -1,8 +1,8 @@
 'use strict';
 
 angular.module('retrospectApp')
-  .directive('fuiAccess',[ 'isLoggedIn', 'Logout', 'SERVICE_URL', '$compile',
-    function (isLoggedIn, Logout, SERVICE_URL, $compile) {
+  .directive('fuiAccess',[ 'isLoggedIn', 'Logout', 'SERVICE_URL', '$compile', 'login', 'Lstore',
+    function (isLoggedIn, Logout, SERVICE_URL, $compile, login, Lstore) {
     return {
         restrict: 'EA',
         link: function postLink(scope, element) {
@@ -14,13 +14,20 @@ angular.module('retrospectApp')
                     scope.text = defaultText;
                     scope.url = defaultUrl;
 
-                    newElement = $compile('<a ng-href={{url}} class="btn btn-danger">{{text}}</a>')(scope);
+                    //newElement = $compile('<a ng-href={{url}} class="btn btn-danger">{{text}}</a>')(scope);
+                    newElement = $compile('<a ng-click="login()" class="btn btn-danger">{{text}}</a>')(scope);
                     delete scope.element;
 
                     element.replaceWith(newElement);
                     element = newElement;
+                    Lstore.remove('token');
                 });
             };
+
+            scope.login = function () {
+                login.go();
+            };
+
             isLoggedIn.get(function (response) {
                 var newElement;
 
@@ -31,8 +38,8 @@ angular.module('retrospectApp')
                 } else {
                     scope.text = defaultText;
                     scope.url = defaultUrl;
-
-                    newElement = $compile('<a ng-href={{url}} class="btn btn-danger">{{text}}</a>')(scope);
+                    newElement = $compile('<a ng-click="login()" class="btn btn-danger">{{text}}</a>')(scope);
+                //    newElement = $compile('<a ng-href={{url}} class="btn btn-danger">{{text}}</a>')(scope);
                 }
 
                 element.replaceWith(newElement);
