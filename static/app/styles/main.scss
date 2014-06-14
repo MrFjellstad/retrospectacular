@@ -157,3 +157,18 @@ header h1 {
 .edit-active-retro {
     width: 75%;
 }
+
+header {
+    span {
+        display: flex;
+    }
+
+    .ticket-controls {
+        order: 2;
+    }
+
+    .ticket-message {
+        order: 1;
+        width: 100%;
+    }
+}
