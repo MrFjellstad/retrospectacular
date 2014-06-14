@@ -15,7 +15,6 @@ angular.module('retrospectApp')
                 onDelete: '&',
                 onUpdate: '&'
             },
-            transclude: true,
             link: function postLink(scope, element, attrs) {
                 scope.toggleEditmode = function() {
                     scope.showEdit = !scope.showEdit;
@@ -38,28 +37,6 @@ angular.module('retrospectApp')
                 };
 
                 scope.saveChange = function () {
-                    scope.onUpdate();
-                    scope.toggleEditmode();
-                };
-            }
-        };
-    })
-    .directive('fuiRetroname', function () {
-        return {
-            templateUrl: 'views/directives/fuiRetroname.html',
-            restrict: 'EA',
-            replace: true,
-            scope: {
-                item: '=',
-                onUpdate: '&'
-            },
-            transclude: true,
-            link: function postLink(scope) {
-                scope.toggleEditmode = function() {
-                    scope.showEdit = !scope.showEdit;
-                };
-
-                scope.updateRetro = function () {
                     scope.onUpdate();
                     scope.toggleEditmode();
                 };
